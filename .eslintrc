@@ -1,0 +1,22 @@
+{
+  "extends": "standard",
+  "rules": {
+    "generator-star-spacing": 0,
+    "space-before-function-paren": [ 2, "never" ],
+    "no-return-assign": 0,
+    "radix": 0,
+    "require-yield": 0,
+    "space-in-parens": 0,
+    "arrow-parens": [2, "as-needed"]
+  },
+  "env": {
+    "mocha": true
+  },
+  "globals": {
+    "log": true,
+    "rootRequire": true,
+    "env": true,
+    "isProduction": true
+  }
+}
+
