@@ -66,6 +66,30 @@ describe('API', function() {
 
     describe('failed request', function() {
       describe('bad params', function() {
+        describe('assetId was not found', function() {
+          var payload = {
+            toAddress: 'someToAddress',
+            assetId: 'noSuchAddress',
+            amount: 3
+          }
+
+          before(function() {
+            storageStub.findOneAsync = function*() {
+              return null
+            }
+          })
+
+          it('returns 404 status code (Not Found)', function() {
+            return request.post('/send').type('json').send(payload).expect(404)
+          })
+
+          it('returns an object with the relevant error message', function() {
+            return request.post('/send').type('json').send(payload).expect({
+              errors: { assetId: "Asset 'noSuchAddress' was not found" }
+            })
+          })
+        })
+
         it('returns 400 status code (Bad Request)', function() {
           var payload = {
             toAddress: '',
