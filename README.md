@@ -1,4 +1,4 @@
-# Colu Backend Example
+## Colu Backend Example
 
 ### Installation:
 ```bash
@@ -7,6 +7,11 @@ git clone git@github.com:mikeys/colu-backend.git
 cd colu-backend
 nvm use
 npm install
+```
+
+
+### Run
+```bash
 PORT=3000 COLU_PRIVATE_SEED=$(echo -n "something_rememberable" | openssl dgst -sha256) npm start | ./node_modules/bunyan/bin/bunyan
 ```
 
