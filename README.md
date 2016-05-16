@@ -1,5 +1,19 @@
 # Colu Backend Example
 
+### Installation:
+```bash
+nvm install 5.9.1 " or above
+git clone git@github.com:mikeys/colu-backend.git
+cd colu-backend
+nvm use
+PORT=3000 COLU_PRIVATE_SEED=$(echo -n "something_rememberable" | openssl dgst -sha256) npm start | ./node_modules/bunyan/bin/bunyan
+```
+
+### Run Tests:
+```bash
+npm test
+```
+
 Issue 2 assets: 50 Spiderman Tickets and 30 Batman Tickets
 ```
 $ curl -i \ 
