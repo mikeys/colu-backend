@@ -1,6 +1,6 @@
 'use strict'
 
-const colu = rootRequire('lib/colu')
+const colu = require('../lib/colu')
 const Storage = rootRequire('lib/storage')
 const validate = rootRequire('lib/validate')
 
@@ -38,14 +38,14 @@ function validatePutIssueParams(body) {
   assets.forEach((asset, index) => {
     var error = {}
 
-    if (!validate.isPositiveInt(asset.amount)) {
-      if (isValid) { isValid = false }
-      error['amount'] = `'amount' ${validate.errors.nonPositiveInteger}`
-    }
-
     if (!validate.isNonEmptyString(asset.assetName)) {
       if (isValid) { isValid = false }
-      error['assetName'] = `'assetName' ${validate.errors.nonEmptyString}`
+      error['assetName'] = validate.errors.nonEmptyString
+    }
+
+    if (!validate.isPositiveInt(asset.amount)) {
+      if (isValid) { isValid = false }
+      error['amount'] = validate.errors.nonPositiveInteger
     }
 
     errors.push(error)
@@ -85,7 +85,6 @@ exports.postSend = function* postSend(next) {
     respondWithError(this, validation.errors)
     return
   }
-
   var body = this.request.body
   var address = body.toAddress
   var assetId = body.assetId
@@ -113,7 +112,7 @@ function validatePostSendParams(body) {
   var errors = {}
 
   if (!validate.isNonEmptyString(body.assetId)) {
-    errors['assetId'] = validate.errorDesc.nonEmptyString
+    errors['assetId'] = validate.errors.nonEmptyString
   }
 
   if (!validate.isNonEmptyString(body.toAddress)) {
@@ -133,7 +132,7 @@ function validatePostSendParams(body) {
 
 function respondWithError(ctx, errors, statusCode) {
   ctx.body = { errors: errors }
-  ctx.statusCode = statusCode || 400
+  ctx.status = statusCode || 400
 }
 
 function* receiveAddressForAsset(assetId) {

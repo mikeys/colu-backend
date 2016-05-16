@@ -1,14 +1,8 @@
-const path = require('path')
+require('./common')
+
 const co = require('co')
-
-// Avoid ugly relative require's (such as require('../../lib/db'))
-global.rootRequire = function(name) {
-  return require(path.join(__dirname, '/', name))
-}
-
 const colu = rootRequire('lib/colu')
 const server = rootRequire('lib/server')
-global.log = rootRequire('lib/logger')
 
 const port = process.env.PORT || 3000
 
