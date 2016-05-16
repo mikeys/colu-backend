@@ -2,18 +2,23 @@
 
 ### Installation:
 ```bash
-nvm install 5.9.1 " or above
+nvm install 5.9.1
 git clone git@github.com:mikeys/colu-backend.git
 cd colu-backend
 nvm use
+npm install
 PORT=3000 COLU_PRIVATE_SEED=$(echo -n "something_rememberable" | openssl dgst -sha256) npm start | ./node_modules/bunyan/bin/bunyan
 ```
 
+
 ### Run Tests:
 ```bash
+npm install –g mocha
 npm test
 ```
 
+
+### Flow
 Issue 2 assets: 50 Spiderman Tickets and 30 Batman Tickets
 ```
 $ curl -i \ 
