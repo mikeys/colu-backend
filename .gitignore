@@ -2,3 +2,4 @@ node_modules/*
 npm-debug.log
 properties.conf
 db/*
+.tern-port
